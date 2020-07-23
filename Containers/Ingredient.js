@@ -1,39 +1,33 @@
 import React, { useState } from "react";
 import { View } from "react-native";
-import * as IngredientShape from "./Ingredients/index";
+import * as IngredientShape from "./Ingredients/Shape/index";
+import Nutrions from "./Ingredients/Nutrions/index.json";
+
+//Should have a better way to deal with this instead of switch case
+//If the JSON Can return the svg it could have been a lot easier
 
 export default function Ingredient({ ingredientType }) {
-  const Shape = () => {
-    console.log("In shape " + ingredientType);
-    switch (ingredientType) {
-      case "BottomBun": {
-        console.log("Returning");
-        return IngredientShape.BottomBun();
-        break;
-      }
-      case "Patty": {
-        console.log("Returning");
-        return IngredientShape.Patty();
-        break;
-      }
-      case "Veggy": {
-        console.log("Returning");
-        return IngredientShape.Veggy();
-        break;
-      }
-      case "TopBun": {
-        console.log("Returning");
-        return IngredientShape.TopBun();
-        break;
-      }
-      default:
-        break;
+  switch (ingredientType) {
+    case "BottomBun": {
+      return <IngredientShape.BottomBun />;
     }
-  };
-  console.log("Eeweewe");
-  return (
-    <View>
-      <Shape />
-    </View>
-  );
+    case "Patty": {
+      return <IngredientShape.Patty />;
+    }
+    case "Tomato": {
+      return <IngredientShape.Tomato />;
+    }
+    case "Veggy": {
+      return <IngredientShape.Veggy />;
+    }
+    case "TopBun": {
+      return <IngredientShape.TopBun />;
+    }
+    default:
+      break;
+  }
 }
+
+export const Nutrion = ({ ingredientType }) => {
+  return IngredientNutri[ingredientType];
+};

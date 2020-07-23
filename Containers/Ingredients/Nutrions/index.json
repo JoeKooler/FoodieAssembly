@@ -1,0 +1,22 @@
+{
+  "BottomBun": {
+    "Carb": 10,
+    "Protein": 2,
+    "Fat": 1
+  },
+  "Patty": {
+    "Carb": 1,
+    "Protein": 5,
+    "Fat": 3
+  },
+  "Veggy": {
+    "Carb": 1,
+    "Protein": 1,
+    "Fat": 0
+  },
+  "BottomBun": {
+    "Carb": 10,
+    "Protein": 2,
+    "Fat": 1
+  }
+}

@@ -5,12 +5,19 @@ import Ingredient from "../Ingredient";
 export const preview = () => {
   return (
     <View>
-      <Ingredient ingredientType={"TopBun"} />;
-      <Ingredient ingredientType={"Veggy"} />;
-      <Ingredient ingredientType={"Patty"} />;
-      <Ingredient ingredientType={"BottomBun"} />;
+      <Ingredient ingredientType={"TopBun"} />
+      <Ingredient ingredientType={"Veggy"} />
+      <Ingredient ingredientType={"Patty"} />
+      <Ingredient ingredientType={"BottomBun"} />
     </View>
   );
 };
 
+export const ingredientList = [
+  "TopBun",
+  "Tomato",
+  "Veggy",
+  "Patty",
+  "BottomBun",
+];
 export const name = "Burger";

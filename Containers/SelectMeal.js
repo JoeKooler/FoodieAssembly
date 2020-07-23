@@ -2,12 +2,34 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Colors } from "../Styles/index";
 
-import * as IngredientShape from "./Ingredients/index";
 import * as Meals from "./Meals/index";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default function SelectMeal() {
-  const [currentMeal, setCurrentMeal] = useState(Meals.Burger);
+export default function SelectMeal({ navigation }) {
+  const meals = Meals.AllMeals;
+  const [currentMeal, setCurrentMeal] = useState(meals[0]);
+  let currentMealIndex = 0;
+
+  const nextMeal = () => {
+    if (currentMealIndex >= meals.length - 1) {
+      return;
+    }
+    currentMealIndex++;
+    setCurrentMeal(meals[currentMealIndex]);
+  };
+
+  const previousMeal = () => {
+    if (currentMealIndex <= 0) {
+      return;
+    }
+    currentMealIndex--;
+    setCurrentMeal(meals[currentMealIndex]);
+  };
+
+  const toCook = () => {
+    navigation.navigate("Cook", currentMeal.name);
+  };
+
   console.log("currentMeal " + currentMeal.name);
   return (
     <View style={styles.container}>
@@ -16,11 +38,15 @@ export default function SelectMeal() {
       <View>
         <currentMeal.preview />
       </View>
-      <View style={styles.selectPanel}>
-        <TouchableOpacity style={styles.unFocusedMeal}></TouchableOpacity>
-        <TouchableOpacity style={styles.focusedMeal}></TouchableOpacity>
-        <TouchableOpacity style={styles.unFocusedMeal}></TouchableOpacity>
-      </View>
+      <TouchableOpacity style={styles.roundButton} onPress={nextMeal}>
+        <Text style={styles.inButtonText}>&gt;</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.roundButton} onPress={previousMeal}>
+        <Text style={styles.inButtonText}>&lt;</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.roundButton} onPress={toCook}>
+        <Text style={styles.inButtonText}>Let's Go</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -63,4 +89,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  roundButton: {
+    borderRadius: 100,
+    borderWidth: 5,
+  },
+  inButtonText: { padding: 20, fontSize: 20 },
 });

@@ -1,5 +1,5 @@
 import React from "react";
-import Svg, { Path, Eclipse } from "react-native-svg";
+import Svg, { Path, Ellipse, Rect } from "react-native-svg";
 
 const BottomBun = () => {
   return (
@@ -10,7 +10,7 @@ const BottomBun = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path
+      <Path
         d="M142 9.45275C142 21.9052 110.212 32 71 32C31.7878 32 0 21.9052 0 9.45275C0 -2.99975 31.7878 0.433807 71 0.433807C110.212 0.433807 142 -2.99975 142 9.45275Z"
         fill="#FFEA7C"
       />
@@ -27,7 +27,7 @@ const Patty = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <Eclipse cx="72" cy="10.5" rx="72" ry="10.5" fill="#EF940B" />
+      <Ellipse cx="72" cy="10.5" rx="72" ry="10.5" fill="#EF940B" />
     </Svg>
   );
 };
@@ -49,6 +49,21 @@ const Veggy = () => {
   );
 };
 
+const Tomato = () => {
+  return (
+    <Svg
+      width="148"
+      height="13"
+      viewBox="0 0 148 13"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <Rect width="93" height="9" rx="4.5" fill="#FF5E5E" />
+      <Rect x="55" y="4" width="93" height="9" rx="4.5" fill="#FF5E5E" />
+    </Svg>
+  );
+};
+
 const TopBun = () => {
   return (
     <Svg
@@ -66,4 +81,4 @@ const TopBun = () => {
   );
 };
 
-export { BottomBun, Patty, Veggy, TopBun };
+export { BottomBun, Patty, Veggy, Tomato, TopBun };

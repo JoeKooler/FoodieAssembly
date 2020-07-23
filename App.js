@@ -9,6 +9,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Ingredient from "./Containers/Ingredient";
 import SelectMeal from "./Containers/SelectMeal";
+import Cook from "./Containers/Cook";
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -22,6 +23,7 @@ export default function App() {
         <Screen name="Menu" component={Menu} />
         <Screen name="Eiei" component={Eiei} />
         <Screen name="Ingredient" component={Ingredient} />
+        <Screen name="Cook" component={Cook}></Screen>
       </Navigator>
     </NavigationContainer>
   );
