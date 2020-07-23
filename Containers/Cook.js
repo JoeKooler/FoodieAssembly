@@ -43,7 +43,7 @@ export default function Cook({ route, navigation }) {
       {currentRecipe.map((i) => (
         <Ingredient ingredientType={i}></Ingredient>
       ))}
-      <View style={{ transform: "scale(0.5)" }}>
+      <View style={{ transform: [{ scale: 0.5 }] }}>
         <TouchableOpacity style={styles.roundButton} onPress={nextIngredient}>
           <Text style={styles.inButtonText}>&gt;</Text>
         </TouchableOpacity>

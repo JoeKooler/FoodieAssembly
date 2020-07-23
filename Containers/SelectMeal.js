@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Colors } from "../Styles/index";
-
+import { useFonts, Righteous_400Regular } from "@expo-google-fonts/righteous";
 import * as Meals from "./Meals/index";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
@@ -9,6 +9,10 @@ export default function SelectMeal({ navigation }) {
   const meals = Meals.AllMeals;
   const [currentMeal, setCurrentMeal] = useState(meals[0]);
   let currentMealIndex = 0;
+
+  let [fontsLoaded] = useFonts({
+    Righteous_400Regular,
+  });
 
   const nextMeal = () => {
     if (currentMealIndex >= meals.length - 1) {
@@ -31,10 +35,29 @@ export default function SelectMeal({ navigation }) {
   };
 
   console.log("currentMeal " + currentMeal.name);
+  if (!fontsLoaded) {
+    return <View />;
+  }
   return (
     <View style={styles.container}>
-      <Text>Select your meal</Text>
-      <Text>{currentMeal.name}</Text>
+      <Text
+        style={{
+          fontFamily: "Righteous_400Regular",
+          fontSize: 80,
+          color: "white",
+        }}
+      >
+        Select your meal
+      </Text>
+      <Text
+        style={{
+          fontFamily: "Righteous_400Regular",
+          fontSize: 60,
+          color: "white",
+        }}
+      >
+        {currentMeal.name}
+      </Text>
       <View>
         <currentMeal.preview />
       </View>

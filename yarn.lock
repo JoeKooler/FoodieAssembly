@@ -948,6 +948,16 @@
   dependencies:
     "@types/hammerjs" "^2.0.36"
 
+"@expo-google-fonts/inter@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/inter/-/inter-0.1.0.tgz#399f068437824fcbf6aa3da5fcf490dba2af85a3"
+  integrity sha512-Y6GCqsUX6JwexQ2wmBkMiJBY6M2GpNQRTczzIGbBGhXWQxqGmP5awRcf0ZJV+OlLeJcKAzas/TW45ZLdpG3yzA==
+
+"@expo-google-fonts/righteous@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/righteous/-/righteous-0.1.0.tgz#6342be9125c22825f8a4bc6ff4278f6301e1122c"
+  integrity sha512-Un/CjLGJ1UovtMxIon+HITYGzKNb25psKCQhPdSeKFsx/g17PbprNoOLxxCYNOsj6d3WwPV/hcv0Eahj4yzS6w==
+
 "@expo/configure-splash-screen@~0.1.0":
   version "0.1.12"
   resolved "https://registry.yarnpkg.com/@expo/configure-splash-screen/-/configure-splash-screen-0.1.12.tgz#8d8889fc98e87cececdb48af45bc8d6447ce699d"
