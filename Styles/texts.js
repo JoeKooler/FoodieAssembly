@@ -1,12 +1,11 @@
 import { useFonts, Righteous_400Regular } from "@expo-google-fonts/righteous";
 
-export const mainFont = {
+const nameFontSize = { fontSize: 60 };
+const mainFontSize = { fontSize: 80 };
+const mainFont = {
   fontFamily: "Righteous_400Regular",
-  color: "white",
+  textAlign: "center",
 };
-
-export const mainFontSize = { fontSize: 80 };
-export const nameFontSize = { fontSize: 60 };
 
 export const mainText = {
   ...mainFont,

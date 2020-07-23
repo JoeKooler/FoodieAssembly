@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { Colors } from "../Styles/index";
+import { Colors, Containers, Texts } from "../Styles/index";
 import { useFonts, Righteous_400Regular } from "@expo-google-fonts/righteous";
 import * as Meals from "./Meals/index";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -40,34 +40,24 @@ export default function SelectMeal({ navigation }) {
   }
   return (
     <View style={styles.container}>
-      <Text
-        style={{
-          fontFamily: "Righteous_400Regular",
-          fontSize: 80,
-          color: "white",
-        }}
-      >
-        Select your meal
-      </Text>
-      <Text
-        style={{
-          fontFamily: "Righteous_400Regular",
-          fontSize: 60,
-          color: "white",
-        }}
-      >
-        {currentMeal.name}
-      </Text>
       <View>
-        <currentMeal.preview />
+        <Text style={styles.mainText}>Select your meal</Text>
+        <Text style={styles.mainText}>{currentMeal.name}</Text>
       </View>
-      <TouchableOpacity style={styles.roundButton} onPress={nextMeal}>
-        <Text style={styles.inButtonText}>&gt;</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.roundButton} onPress={previousMeal}>
-        <Text style={styles.inButtonText}>&lt;</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.roundButton} onPress={toCook}>
+      <View style={styles.mealsSelectionContainer}>
+        <TouchableOpacity style={styles.roundButton} onPress={previousMeal}>
+          <Text style={styles.inButtonText}>&lt;</Text>
+        </TouchableOpacity>
+
+        <View style={{ transform: [{ scale: 1.5 }] }}>
+          <currentMeal.preview />
+        </View>
+        <TouchableOpacity style={styles.roundButton} onPress={nextMeal}>
+          <Text style={styles.inButtonText}>&gt;</Text>
+        </TouchableOpacity>
+      </View>
+
+      <TouchableOpacity style={styles.rectangleButton} onPress={toCook}>
         <Text style={styles.inButtonText}>Let's Go</Text>
       </TouchableOpacity>
     </View>
@@ -80,41 +70,36 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: Colors.background,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
   },
-  unFocusedMeal: {
-    width: 50,
-    height: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "transparent",
-    borderColor: "white",
-    borderWidth: 10,
-    paddingHorizontal: 20,
-    paddingVertical: 20,
-    marginTop: 20,
-    marginHorizontal: 40,
+  mainText: {
+    ...Texts.mainText,
+    color: "white",
   },
-  focusedMeal: {
-    width: 100,
-    height: 100,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "transparent",
-    borderColor: "white",
-    borderWidth: 10,
-    paddingHorizontal: 20,
-    paddingVertical: 20,
-    marginTop: 20,
-    marginHorizontal: 40,
+  nameText: {
+    ...Texts.nameText,
   },
-  selectPanel: {
+  mealsSelectionContainer: {
     flexDirection: "row",
-    alignItems: "center",
+    width: "80vw",
+    justifyContent: "space-between",
   },
   roundButton: {
+    width: 60,
+    height: 60,
     borderRadius: 100,
     borderWidth: 5,
+    borderColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  inButtonText: { padding: 20, fontSize: 20 },
+  rectangleButton: {
+    width: 300,
+    height: 100,
+    borderWidth: 5,
+    borderColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  inButtonText: { fontSize: 40, fontWeight: "bold", color: "white" },
 });

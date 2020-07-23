@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
-import { Colors } from "../Styles/index";
+import { Colors, Containers, Texts } from "../Styles/index";
 
 export default function Menu({ navigation }) {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -25,11 +25,8 @@ export default function Menu({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: "column",
+    ...Containers.mainContainer,
     backgroundColor: Colors.background,
-    alignItems: "center",
-    justifyContent: "center",
   },
   buttons: {
     width: 200,
