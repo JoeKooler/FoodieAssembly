@@ -19,8 +19,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Navigator>
-        <Screen name="SelectMeal" component={SelectMeal}></Screen>
         <Screen name="Menu" component={Menu} />
+        <Screen name="SelectMeal" component={SelectMeal}></Screen>
         <Screen name="Eiei" component={Eiei} />
         <Screen name="Ingredient" component={Ingredient} />
         <Screen name="Cook" component={Cook}></Screen>

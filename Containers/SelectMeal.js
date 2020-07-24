@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { Colors, Containers, Texts } from "../Styles/index";
+import { Colors, Containers, Texts, Buttons } from "../Styles/index";
 import { useFonts, Righteous_400Regular } from "@expo-google-fonts/righteous";
 import * as Meals from "./Meals/index";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -35,6 +35,7 @@ export default function SelectMeal({ navigation }) {
   };
 
   console.log("currentMeal " + currentMeal.name);
+  
   if (!fontsLoaded) {
     return <View />;
   }
@@ -42,7 +43,7 @@ export default function SelectMeal({ navigation }) {
     <View style={styles.container}>
       <View>
         <Text style={styles.mainText}>Select your meal</Text>
-        <Text style={styles.mainText}>{currentMeal.name}</Text>
+        <Text style={styles.nameText}>{currentMeal.name}</Text>
       </View>
       <View style={styles.mealsSelectionContainer}>
         <TouchableOpacity style={styles.roundButton} onPress={previousMeal}>
@@ -66,11 +67,8 @@ export default function SelectMeal({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: "column",
+    ...Containers.mainContainer,
     backgroundColor: Colors.background,
-    alignItems: "center",
-    justifyContent: "space-evenly",
   },
   mainText: {
     ...Texts.mainText,
@@ -78,28 +76,16 @@ const styles = StyleSheet.create({
   },
   nameText: {
     ...Texts.nameText,
+    color: "white",
   },
   mealsSelectionContainer: {
-    flexDirection: "row",
-    width: "80vw",
-    justifyContent: "space-between",
+    ...Containers.withSelectionContainer,
   },
   roundButton: {
-    width: 60,
-    height: 60,
-    borderRadius: 100,
-    borderWidth: 5,
-    borderColor: "white",
-    alignItems: "center",
-    justifyContent: "center",
+    ...Buttons.NavigatingButton,
   },
   rectangleButton: {
-    width: 300,
-    height: 100,
-    borderWidth: 5,
-    borderColor: "white",
-    alignItems: "center",
-    justifyContent: "center",
+    ...Buttons.MainButton,
   },
-  inButtonText: { fontSize: 40, fontWeight: "bold", color: "white" },
+  inButtonText: { ...Texts.inButtonText, color: "white" },
 });

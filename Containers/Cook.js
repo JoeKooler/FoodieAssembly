@@ -4,7 +4,8 @@ import * as Meals from "./Meals/index";
 import Ingredient from "./Ingredient";
 import { ingredientList } from "./Meals/Burger";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { Colors } from "../Styles/index";
+import { Colors, Containers, Texts, Buttons } from "../Styles/index";
+import { useFonts, Righteous_400Regular } from "@expo-google-fonts/righteous";
 
 export default function Cook({ route, navigation }) {
   const currentMeal = Meals.AllMeals.find((e) => e.name === route.params);
@@ -12,6 +13,10 @@ export default function Cook({ route, navigation }) {
   const [currentIngredient, setCurrentIngredient] = useState(ingredientList[1]);
   const [currentIngredientIndex, setCurrentIngredientIndex] = useState(1);
   const [currentRecipe, setCurrentRecipe] = useState([]);
+
+  let [fontsLoaded] = useFonts({
+    Righteous_400Regular,
+  });
 
   const nextIngredient = () => {
     if (currentIngredientIndex >= ingredientList.length - 1) {
@@ -38,73 +43,76 @@ export default function Cook({ route, navigation }) {
     setCurrentRecipe(currentRecipe.filter((e, i) => i > 0));
   };
 
+  //The JSX below looks like a mess
+  //If there's more reusable code i should make them components >_>
+
+  if (!fontsLoaded) {
+    return <View />;
+  }
   return (
-    <View>
-      {currentRecipe.map((i) => (
-        <Ingredient ingredientType={i}></Ingredient>
-      ))}
-      <View style={{ transform: [{ scale: 0.5 }] }}>
-        <TouchableOpacity style={styles.roundButton} onPress={nextIngredient}>
-          <Text style={styles.inButtonText}>&gt;</Text>
-        </TouchableOpacity>
+    <View style={styles.container}>
+      <Text style={styles.mainText}></Text>
+      <Text style={styles.nameText}>{currentIngredient}</Text>
+      <View style={styles.mealsSelectionContainer}>
+        <View>
+          <TouchableOpacity style={styles.roundButton} onPress={addIngredient}>
+            <Text style={styles.inButtonText}>+</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.roundButton} onPress={popIngredient}>
+            <Text style={styles.inButtonText}>-</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          {currentRecipe.map((i) => (
+            <Ingredient ingredientType={i}></Ingredient>
+          ))}
+        </View>
+      </View>
+
+      <View style={styles.mealsSelectionContainer}>
         <TouchableOpacity
           style={styles.roundButton}
           onPress={previousIngredient}
         >
           <Text style={styles.inButtonText}>&lt;</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.roundButton} onPress={addIngredient}>
-          <Text style={styles.inButtonText}>+</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.roundButton} onPress={popIngredient}>
-          <Text style={styles.inButtonText}>-</Text>
-        </TouchableOpacity>
         <Ingredient ingredientType={currentIngredient}></Ingredient>
+        <TouchableOpacity style={styles.roundButton} onPress={nextIngredient}>
+          <Text style={styles.inButtonText}>&gt;</Text>
+        </TouchableOpacity>
       </View>
+      <TouchableOpacity style={styles.rectangleButton}>
+        <Text style={styles.inButtonText}>Cook</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: "column",
+    ...Containers.mainContainer,
     backgroundColor: Colors.background,
-    alignItems: "center",
-    justifyContent: "center",
   },
-  unFocusedMeal: {
-    width: 50,
-    height: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "transparent",
-    borderColor: "white",
-    borderWidth: 10,
-    paddingHorizontal: 20,
-    paddingVertical: 20,
-    marginTop: 20,
-    marginHorizontal: 40,
+  mealsSelectionContainer: {
+    ...Containers.withSelectionContainer,
   },
-  focusedMeal: {
-    width: 100,
-    height: 100,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "transparent",
-    borderColor: "white",
-    borderWidth: 10,
-    paddingHorizontal: 20,
-    paddingVertical: 20,
-    marginTop: 20,
-    marginHorizontal: 40,
+  mainText: {
+    ...Texts.mainText,
+    color: "white",
+  },
+  nameText: {
+    ...Texts.nameText,
+    color: "white",
   },
   selectPanel: {
     flexDirection: "row",
     alignItems: "center",
   },
   roundButton: {
-    borderRadius: 100,
-    borderWidth: 5,
+    ...Buttons.NavigatingButton,
   },
-  inButtonText: { padding: 20, fontSize: 20 },
+  rectangleButton: {
+    ...Buttons.MainButton,
+  },
+  inButtonText: { ...Texts.inButtonText, color: "white" },
 });

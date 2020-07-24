@@ -1,23 +1,31 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
-import { Colors, Containers, Texts } from "../Styles/index";
+import { Colors, Containers, Texts, Buttons } from "../Styles/index";
+import { useFonts, Righteous_400Regular } from "@expo-google-fonts/righteous";
 
 export default function Menu({ navigation }) {
   const [loggedIn, setLoggedIn] = useState(false);
   const [firstButtonText, setFirstButtonText] = useState("MAKE");
   const [secondButtonText, setSecondButtonText] = useState("WHAT I ATE");
 
+  let [fontsLoaded] = useFonts({
+    Righteous_400Regular,
+  });
+
+  if (!fontsLoaded) {
+    return <View />;
+  }
   return (
     <View style={styles.container}>
-      <Text style={styles.textStyle}>Foodie Assembly</Text>
+      <Text style={styles.mainText}>Foodie Assembly</Text>
       <TouchableOpacity
-        style={styles.buttons}
+        style={styles.rectangleButton}
         onPress={() => navigation.navigate("SelectMeal")}
       >
-        <Text style={styles.textStyle}>{firstButtonText}</Text>
+        <Text style={styles.inButtonText}>{firstButtonText}</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.buttons}>
-        <Text style={styles.textStyle}>{secondButtonText}</Text>
+      <TouchableOpacity style={styles.rectangleButton}>
+        <Text style={styles.inButtonText}>{secondButtonText}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -28,19 +36,19 @@ const styles = StyleSheet.create({
     ...Containers.mainContainer,
     backgroundColor: Colors.background,
   },
-  buttons: {
-    width: 200,
-    height: 75,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "transparent",
-    borderColor: "white",
-    borderWidth: 10,
-    paddingHorizontal: 10,
-    paddingVertical: 20,
-    marginTop: 20,
+  rectangleButton: {
+    ...Buttons.MainButton,
   },
-  textStyle: {
+  mainText: {
+    ...Texts.mainText,
+    color: "white",
+  },
+  nameText: {
+    ...Texts.nameText,
+    color: "white",
+  },
+  inButtonText: {
+    ...Texts.inButtonText,
     color: "white",
   },
 });
